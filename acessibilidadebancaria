@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <string.h>
+
+#define USERNAME "usuario"
+#define PASSWORD "senha123"
+
+void clearScreen() {
+    // Função para limpar a tela
+    printf("\033[H\033[J"); // Código ANSI para limpar a tela
+}
+
+int main() {
+    char username[50];
+    char password[50];
+
+    // Limpar a tela no início do programa
+    clearScreen();
+
+    // Mensagem de boas-vindas
+    printf("Bem-vindo ao Banco Acessível\n");
+    printf("Por favor, faça o login para continuar.\n\n");
+
+    // Solicitar o nome de usuário
+    printf("Nome de Usuário: ");
+    fgets(username, sizeof(username), stdin);
+    // Remover o caractere de nova linha
+    username[strcspn(username, "\n")] = 0;
+
+    // Solicitar a senha
+    printf("Senha: ");
+    fgets(password, sizeof(password), stdin);
+    // Remover o caractere de nova linha
+    password[strcspn(password, "\n")] = 0;
+
+    // Verificar credenciais
+    if (strcmp(username, USERNAME) == 0 && strcmp(password, PASSWORD) == 0) {
+        printf("\nLogin bem-sucedido! Bem-vindo, %s.\n", username);
+    } else {
+        printf("\nNome de usuário ou senha incorretos. Tente novamente.\n");
+    }
+
+    return 0;
+}
